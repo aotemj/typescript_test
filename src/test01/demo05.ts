@@ -10,10 +10,18 @@ interface SeniorTeacher {
 }
 
 
+// function selectTeach(person: Teacher | SeniorTeacher) {
+//     if (person.teachSenior) {
+//         (person as Teacher).teach();
+//     } else {
+//         (person as SeniorTeacher).seniorTeach();
+//     }
+// }
+
 function selectTeach(person: Teacher | SeniorTeacher) {
-    if (person.teachSenior) {
-        (person as Teacher).teach();
+    if ('seniorTeach' in person) {
+        (person as SeniorTeacher).seniorTeach()
     } else {
-        (person as SeniorTeacher).seniorTeach();
+        (person as Teacher).teach()
     }
 }
