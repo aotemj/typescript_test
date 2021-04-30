@@ -35,20 +35,34 @@ getParams<number>([1, 2, 3])
 
 // 泛型在类中的使用：
 
-class Person1 {
-    private _hobby: string [];
+// class Person1 {
+//     private _hobby: string [];
+//
+//     constructor(hobby: Array<string>) {
+//         this._hobby = hobby
+//     }
+//
+//     getHobby(index: number): string {
+//         return this._hobby[index];
+//     }
+// }
 
-    constructor(hobby: Array<string>) {
+class Person1<T> {
+    private _hobby: T[];
+
+    constructor(hobby: T[]) {
         this._hobby = hobby
     }
 
-    getHobby(index: number): string {
-        return this._hobby[index];
+    getHobby(index: number): T {
+        return this._hobby[index]
     }
 }
 
-const person = new Person1(["eat", "sleep"])
+const person = new Person1<string>(["eat", "sleep"])
+const person2 = new Person1<number>([1, 2, 3])
 console.log(person.getHobby(1));
+console.log(person2.getHobby(0));
 
 function identity<T>(arg: T): T {
     return arg;
